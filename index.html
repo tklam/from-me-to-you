@@ -1,0 +1,51 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <script src="jquery.min.js"/></script>
+    <script src="ponyfill.min.js"/></script>
+    <script src="StreamSaver.min.js"/></script>
+  </head>
+<body onload="changeActionOrder('offer_party')">
+  <p>
+
+  <button id="reset" onclick="reset()">Reset</button><br>
+  <p>
+
+  <input type="radio" id="offer_party" name="connection_party" value="offer_party" onclick="changeActionOrder('offer_party')" checked="checked">
+<label for="conection_offer">Send file</label><br>
+  <input type="radio" id="answer_party" name="connection_party" value="answer_party" onclick="changeActionOrder('answer_party')">
+<label for="conection_answer">Receive file</label><br>
+
+  <p>
+
+  <ol id="connection_actions">
+    <li id="gen_sdp_div">
+      <button id="gen_sdp_offer_or_answer" onclick="createOfferOrAnswer()">Generate necessary information</button><br>
+    </li>
+    <li id="my_text_div">
+      <textarea id="my_text" cols="48" rows="9" placeholder="Copy and send this text to your peer"></textarea>
+    </li>
+    <li id="their_text_div">
+      <textarea id="their_text" cols="48" rows="9" placeholder="Receive text from your peer and paste it here"></textarea>
+    </li>
+    <li id="file_div">
+      <ol>
+        <li>
+          <input type="file" id="file_input"/>
+        </li>
+        <li>
+          <button id="send_file" onclick="sendFile()">Send file</button>
+        </li>
+      </ol>
+    </li>
+    <li id="chat_div">
+      Chat: <input id="chat"><br>
+    </li>
+  </ol>
+
+  <p>
+
+<div id="div"></div>
+<script src="connection.js"></script>
+</body>
+<html>
