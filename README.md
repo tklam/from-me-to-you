@@ -19,4 +19,4 @@ It is a P2P file transfer utility based on WebRTC. The connection is to be set u
 
 # TODO
 - (Kind of solved...) Allow a longer signalling period. It seems the connection setup will be timed out after 10 seconds, which is too short for doing manual offer/answer. 
-- Currently it works only among browser tabs. 
+- Currently it works only in intranet.
