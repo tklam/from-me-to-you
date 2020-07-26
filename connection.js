@@ -15,6 +15,9 @@ var cur_received_filesize=0;
 var receive_filestream = null;
 
 
+var answer = null;
+
+
 pc.oniceconnectionstatechange = e => {
   log(pc.iceConnectionState);
 };
@@ -96,9 +99,11 @@ function changeActionOrder(party_) {
   party = party_;
 
   if (party == $("#offer_party").val()) {
+    $("#gen_sdp_div *").show();
     $("#gen_sdp_div *").prop('disabled', false);
     $("#my_text_div *").prop('disabled', false);
     $("#their_text_div *").prop('disabled', true);
+    $("#connect_div *").hide();
     $("#file_div *").prop('disabled', true);
     $("#chat_div *").prop('disabled', true);
 
@@ -110,8 +115,10 @@ function changeActionOrder(party_) {
   }
   else if (party == $("#answer_party").val()) {
     $("#their_text_div *").prop('disabled', false);
-    $("#gen_sdp_div *").prop('disabled', true);
+    $("#gen_sdp_div *").hide()
     $("#my_text_div *").prop('disabled', true);
+    $("#connect_div *").show();
+    $("#connect_div *").prop('disabled', true);
     $("#file_div *").prop('disabled', true);
     $("#chat_div *").prop('disabled', true);
 
@@ -173,6 +180,12 @@ async function sendFile() {
   readSlice(0);
 }
 
+async function connect() {
+  if (party == $("#answer_party").val()) {
+    await pc.setLocalDescription(answer);
+  }
+}
+
 
 $("#their_text").keypress( async function(e) {
   if (e.keyCode != 13) {return;}
@@ -188,18 +201,17 @@ $("#their_text").keypress( async function(e) {
     $("#my_text_div *").prop('disabled', false);
 
     await pc.setRemoteDescription({type: "offer", sdp: $('#their_text').val()});
-    await pc.setLocalDescription(await pc.createAnswer());
+    answer = await pc.createAnswer();
+    //await pc.setLocalDescription(answer);
+    $("#my_text").val(answer.sdp);
+    $("#my_text").focus();
+    $("#my_text").select();
+    document.execCommand("copy");
 
-    pc.onicecandidate = ({candidate}) => {
-      if (candidate) {return;}
-      $("#my_text").val(pc.localDescription.sdp);
-      $("#my_text").focus();
-      $("#my_text").select();
-      document.execCommand("copy");
+    $("#connect_div *").prop('disabled', false);
+    $("#file_div *").prop('disabled', false);
+    $("#chat_div *").prop('disabled', false);
 
-      $("#file_div *").prop('disabled', false);
-      $("#chat_div *").prop('disabled', false);
-    };
   }
 });
 
