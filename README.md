@@ -14,7 +14,8 @@ It is a P2P file transfer utility based on WebRTC. The connection is to be set u
     1. Wait for your peer to send you their offer
     2. Paste their offer, press enter
     3. Copy your answer, and send it back to your peer
+    4. "Wait until your peer has received your text", and press the button with the aforementioned text 
 4. File transfer and chat are then available. Either the offer side or the answer side can initiate the transfer.  
 
 # TODO
-- Allow a longer signalling period. It seems the connection setup will be timed out after 10 seconds, which is too short for doing manual offer/answer. 
+- (Kind of solved...) Allow a longer signalling period. It seems the connection setup will be timed out after 10 seconds, which is too short for doing manual offer/answer. 
