@@ -1,6 +1,11 @@
 # From Me To You
 It is a P2P file transfer utility based on WebRTC. The connection is to be set up manually. That means it does not even rely on any signalling server.
 
+## Yet another P2P file transfer utility, why?
+WebRTC has already got a do-it-all technology stack. I want to make use of WebRTC to construct a file transfer utility for almost free. Manual connection setup is preferred because I do not want to run or rely on any server.
+
+It turns out TURN servers are still necessary in practice as our mobile phones are very likely behind symmetric NAT. Yet there is one scenario in which this utility can do its work without TURN servers: when all your devices are in the same network, and you want to send files from one computer to another.
+
 ## Setting up the connection
 1. Choose "send file"(the offer side) or "receive file"(the answer side)
 2. If you are the offer side:
