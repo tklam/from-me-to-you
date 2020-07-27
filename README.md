@@ -25,7 +25,7 @@ It turns out TURN servers are still necessary in practice as our mobile phones a
 ## Getting around NAT
 If your devices are behind NAT, you probably need a TURN server. You might want to try an open source TURN server called [Coturn](https://github.com/coturn/coturn). The TURN server acts as a relay to help the endpoint peers to exchange messages. Using it does not break the end-to-end encryption.
 
-The ports TCP 3478 and UDP 3478 of the server hosting the your TURN server have to be opened. Once you have set up the firewall and the TURN server, you can add and entry in *iceServers* in connection.js as follows:
+The ports TCP 3478 and UDP 3478 of the server hosting the your TURN server have to be opened. Once you have set up the firewall and the TURN server, you can add an entry in *iceServers* in connection.js as follows:
 ```
 {
       urls: "turn:some.server.com:3478",
@@ -39,4 +39,3 @@ The ports TCP 3478 and UDP 3478 of the server hosting the your TURN server have 
 - (Kind of solved...) Allow a longer signalling period. It seems the connection setup will be timed out after 10 seconds, which is too short for doing manual offer/answer. 
 - The connection still cannot be established when one of the peer is using VPN. I am figuring out the reason.
 - Better UI and UX
-- Running free TURN servers for the public?
