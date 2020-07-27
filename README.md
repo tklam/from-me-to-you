@@ -32,5 +32,6 @@ The ports TCP 3478 and UDP 3478 of the server hosting the your TURN server have 
 
 # TODO
 - (Kind of solved...) Allow a longer signalling period. It seems the connection setup will be timed out after 10 seconds, which is too short for doing manual offer/answer. 
+- The connection still cannot be established when one of the peer is using VPN. I am figuring out the reason.
 - Better UI and UX
 - Running free TURN servers for the public?
